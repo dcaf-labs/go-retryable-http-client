@@ -3,7 +3,7 @@ package examples
 import (
 	"context"
 
-	api "github.com/dcaf-labs/go-retryable-http-client"
+	api "github.com/dcaf-labs/solana-go-retryable-http-client"
 	"github.com/gagliardetto/solana-go/rpc"
 	"github.com/gagliardetto/solana-go/rpc/jsonrpc"
 	"github.com/sirupsen/logrus"

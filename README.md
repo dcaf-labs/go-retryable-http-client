@@ -8,7 +8,7 @@ This module provides two key features:
 
 ## Getting Started
 ```bash
-go get github.com/dcaf-labs/go-retryable-http-client
+go get github.com/dcaf-labs/solana-go-retryable-http-client
 ```
 
 ## Usage

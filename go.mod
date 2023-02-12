@@ -1,4 +1,4 @@
-module github.com/dcaf-labs/go-retryable-http-client
+module github.com/dcaf-labs/solana-go-retryable-http-client
 
 go 1.18
 
