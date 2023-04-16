@@ -38,7 +38,7 @@ func DecodeRequestBody[V any](resp *http.Response, res V) (V, error) {
 func GetDefaultRateLimitHTTPClientOptions() RateLimitHTTPClientOptions {
 	return RateLimitHTTPClientOptions{
 		CallsPerSecond:   defaultCallsPerSecond,
-		HttpClient:       *retryablehttp.NewClient().HTTPClient,
+		HttpClient:       retryablehttp.NewClient().HTTPClient,
 		MaxRetries:       defaultMaxRetries,
 		MinRetryDuration: defaultRetryDuration,
 		CheckRetry:       GetDefaultCheckRetry,
@@ -54,7 +54,9 @@ func GetDefaultRateLimitedHTTPClient(options RateLimitHTTPClientOptions) Retryab
 	rateLimiter := rate.NewLimiter(rate.Every(time.Minute/time.Duration(options.CallsPerSecond*60)), 1)
 
 	client := retryablehttp.NewClient()
-	client.HTTPClient = &options.HttpClient
+	if options.HttpClient != nil {
+		client.HTTPClient = options.HttpClient
+	}
 	client.Logger = nil
 	client.CheckRetry = options.CheckRetry
 	client.RetryWaitMin = options.MinRetryDuration

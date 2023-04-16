@@ -19,7 +19,7 @@ type RetryableHTTPClient struct {
 
 type RateLimitHTTPClientOptions struct {
 	CallsPerSecond   float64
-	HttpClient       http.Client
+	HttpClient       *http.Client
 	MaxRetries       int
 	MinRetryDuration time.Duration
 	CheckRetry       retryablehttp.CheckRetry
