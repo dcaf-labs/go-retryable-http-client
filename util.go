@@ -54,6 +54,7 @@ func GetDefaultRateLimitedHTTPClient(options RateLimitHTTPClientOptions) Retryab
 	rateLimiter := rate.NewLimiter(rate.Every(time.Minute/time.Duration(options.CallsPerSecond*60)), 1)
 
 	client := retryablehttp.NewClient()
+	client.HTTPClient = &options.HttpClient
 	client.Logger = nil
 	client.CheckRetry = options.CheckRetry
 	client.RetryWaitMin = options.MinRetryDuration
